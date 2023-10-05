@@ -25,7 +25,7 @@ describe("Rentals Service Unit Tests", () => {
 
     expect(result).rejects.toEqual({
       name: "PendentRentalError",
-      message: "Movie rental is pending"
+      message: "The user already have a rental!"
     })
 
   })
@@ -37,14 +37,14 @@ describe("Rentals Service Unit Tests", () => {
       return {
         id: 1,
         name: "Lorem Ipsum",
-        adultsOnly: false
+        adultsOnly: true
       }
     });
 
     const result = rentalsService.checkMoviesValidForRental([1], user);
     expect(result).rejects.toEqual({
       name: "InsufficientAgeError",
-      message: "Insufficient Age"
+      message: "Cannot see that movie."
     })
   })
 })
